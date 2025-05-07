@@ -1,4 +1,4 @@
-// Extended simulation integrating canvas visualization with bidding concepts
+
 
 class Robot {
   constructor(id, x, y, successRate) {
@@ -12,14 +12,14 @@ class Robot {
   }
 
   computeBid(humanModel, beliefDistribution, alpha) {
-    // Adjust randomness to improve coverage of all possibilities
-    const noiseRange = 0.4; // increased from 0.2
+    
+    const noiseRange = 0.4; 
     const noisySuccessRate = this.successRate + (Math.random() - 0.5) * noiseRange;
     const autonomousValue = Math.max(0, noisySuccessRate) * 10;
 
     const expectedHumanSuccess = humanModel.estimateSuccess(beliefDistribution);
     const noisyHumanSuccess = expectedHumanSuccess + (Math.random() - 0.5) * noiseRange;
-    const humanValue = Math.max(0, noisyHumanSuccess) * 12; // reduce multiplier slightly for balance
+    const humanValue = Math.max(0, noisyHumanSuccess) * 12; 
 
     const priorVar = humanModel.computeVariance(beliefDistribution);
     const postVar = humanModel.estimatePostVarAfterAction(beliefDistribution);
