@@ -7,8 +7,8 @@
     /* General Body Styling */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212; /* Dark Background */
-      color: #EAEAEA; /* Light text for contrast */
+      background-color: #121212;
+      color: #EAEAEA;
       margin: 0;
       padding: 0;
     }
@@ -21,7 +21,6 @@
       justify-content: space-between;
       align-items: center;
       color: #fff;
-      box-shadow: none; /* Optional: Remove any shadow */
     }
 
     .navbar a {
@@ -175,7 +174,9 @@
               <button type="submit">Delete</button>
             </form>
           </div>
-          <p><strong>Created:</strong> <%= new Date(sim.createdAt).toLocaleString() %></p>
+          <p><strong>Created:</strong> 
+            <%= new Date(sim.createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) %>
+          </p>
           <p><strong>Robots:</strong> <%= sim.robotData.length %></p>
 
           <table class="robot-table">
