@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulate</title>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Use Google Fonts for stylish font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0e7ff, #f3f4f6, #f9fafb);
+      background-size: 400% 400%;
+      animation: backgroundShift 10s ease infinite;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 40px;
+      transition: background 5s ease-in-out;
+      align-items: center; /* Center all content horizontally */
+      justify-content: flex-start;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 50% 50%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 50% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #333;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h3 {
+      font-size: 1.6rem;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    div.canvas-container {
+      margin-bottom: 50px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      width: 80%;
+      max-width: 650px;
+    }
+
+    div.canvas-container:hover {
+      transform: scale(1.05);
+    }
+
+    canvas {
+      border-radius: 10px;
+      background-color: #f3f4f6;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      width: 100%;
+    }
+
+    canvas:hover {
+      transform: scale(1.05);
+    }
+
+    /* Button container */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 650px;
+      margin-top: 40px;
+    }
+
+    /* Buttons */
+    button {
+      background-color: #333;
+      color: white;
+      font-size: 1.2rem;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+      width: 100%; /* Full-width button */
+      max-width: 400px; /* Maximum width for button */
+      text-align: center;
+    }
+
+    button:hover {
+      background-color: #555;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Re-bid Button */
+    .re-bid-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .re-bid-btn:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #333;
+      font-size: 0.9rem;
+      margin-top: auto;
+      opacity: 0;
+      animation: fadeInFooter 1s forwards;
+      width: 100%;
+    }
+
+    @keyframes fadeInFooter {
+      100% {
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <a href="/simulate" class="re-bid-btn">Re-bid</a>
+
+  <h1>Robot Bidding Simulation</h1>
+
+  <!-- Box 1: All Robots -->
+  <div class="canvas-container">
+    <h3>All Robots (Initially Blue)</h3>
+    <canvas id="allRobotsCanvas" width="600" height="300"></canvas>
+  </div>
+
+  <!-- Box 2: Robots Wanting Help -->
+  <div class="canvas-container">
+    <h3>Robots turn red when they need help.</h3>
+    <canvas id="wantHelpCanvas" width="600" height="300"></canvas>
+  </div>
+
+  <!-- Box 3: Robots Who Got Help -->
+  <div class="canvas-container">
+    <h3>Robots Who Got Help (Green)</h3>
+    <canvas id="gotHelpCanvas" width="600" height="300"></canvas>
+  </div>
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <!-- Save Simulation Button -->
+    <form action="/simulate" method="POST">
+      <input type="hidden" name="robotData" id="robotData">
+      <button type="submit">Save Simulation</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Multi-Robot Allocation of Assistance from a Shared Uncertain Operator Project</p>
+  </footer>
+
+  <script src="/js/simulate.js"></script>
+</body>
+</html>
